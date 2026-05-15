@@ -1,5 +1,6 @@
 # Custom user model
 AUTH_USER_MODEL = 'octofit_tracker.User'
+import os
 """
 Django settings for octofit_tracker project.
 
@@ -28,6 +29,12 @@ SECRET_KEY = 'django-insecure-3@cbke^no)$p7%=+zs#c#2(z-ole&o^pm=q-fd#umqtfesny)+
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+
+# Add codespace host if available
+codespace_name = os.environ.get('CODESPACE_NAME')
+if codespace_name:
+    codespace_host = f"{codespace_name}-8000.app.github.dev"
+    ALLOWED_HOSTS.append(codespace_host)
 
 
 # Application definition
@@ -135,6 +142,12 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_HEADERS = ['*']
 CORS_ALLOW_METHODS = ['*']
+
+# Add codespace origin if available
+if codespace_name:
+    CORS_ALLOWED_ORIGINS = [f"https://{codespace_host}"]
+else:
+    CORS_ALLOWED_ORIGINS = []
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
