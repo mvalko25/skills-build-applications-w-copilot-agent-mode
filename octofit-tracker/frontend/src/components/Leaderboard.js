@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { buildApiUrl } from '../api';
+import { getCodespaceName } from '../api';
 
 function Leaderboard() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
-  const endpoint = buildApiUrl('leaderboard');
+  const codespaceName = getCodespaceName() || 'codespace';
+  const endpoint = `https://${codespaceName}-8000.app.github.dev/api/leaderboard/`;
 
   const fetchData = () => {
     setLoading(true);

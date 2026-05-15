@@ -22,3 +22,5 @@ export const baseApiUrl = codespaceName
   : 'http://localhost:8000/api';
 
 export const buildApiUrl = (component) => `${baseApiUrl}/${component}/`;
+
+export { getCodespaceName };

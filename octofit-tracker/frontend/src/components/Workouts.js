@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { buildApiUrl } from '../api';
+import { getCodespaceName } from '../api';
 
 function Workouts() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
-  const endpoint = buildApiUrl('workouts');
+  const codespaceName = getCodespaceName() || 'codespace';
+  const endpoint = `https://${codespaceName}-8000.app.github.dev/api/workouts/`;
 
   const fetchData = () => {
     setLoading(true);
