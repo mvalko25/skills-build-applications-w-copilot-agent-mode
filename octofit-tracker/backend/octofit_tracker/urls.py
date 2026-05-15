@@ -47,6 +47,16 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', api_root),  # / points to api_root
     path('api/', api_root),  # api_root at /api/
+    path('api/users', views.UserViewSet.as_view({'get': 'list', 'post': 'create'})),
+    path('api/teams', views.TeamViewSet.as_view({'get': 'list', 'post': 'create'})),
+    path('api/activities', views.ActivityViewSet.as_view({'get': 'list', 'post': 'create'})),
+    path('api/workouts', views.WorkoutViewSet.as_view({'get': 'list', 'post': 'create'})),
+    path('api/leaderboard', views.LeaderboardViewSet.as_view({'get': 'list', 'post': 'create'})),
     path('api/', include((router.urls, 'octofit_tracker'), namespace='api')),
+    path('users', views.UserViewSet.as_view({'get': 'list', 'post': 'create'})),
+    path('teams', views.TeamViewSet.as_view({'get': 'list', 'post': 'create'})),
+    path('activities', views.ActivityViewSet.as_view({'get': 'list', 'post': 'create'})),
+    path('workouts', views.WorkoutViewSet.as_view({'get': 'list', 'post': 'create'})),
+    path('leaderboard', views.LeaderboardViewSet.as_view({'get': 'list', 'post': 'create'})),
     path('', include(router.urls)),
 ]
