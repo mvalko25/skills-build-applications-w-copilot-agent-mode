@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
-
-const baseUrl = process.env.REACT_APP_CODESPACE_NAME
-  ? `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api`
-  : 'http://localhost:8000/api';
+import { buildApiUrl } from '../api';
 
 function Leaderboard() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
-  const endpoint = `${baseUrl}/leaderboard/`;
+  const endpoint = buildApiUrl('leaderboard');
 
   const fetchData = () => {
     setLoading(true);
