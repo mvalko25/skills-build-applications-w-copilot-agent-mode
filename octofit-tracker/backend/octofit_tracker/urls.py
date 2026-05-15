@@ -34,7 +34,7 @@ def api_root(request):
     if codespace_name:
         base_url = f"https://{codespace_name}-8000.app.github.dev/api/"
     else:
-        base_url = request.build_absolute_uri()
+        base_url = request.build_absolute_uri('/api/')
     return Response({
         'users': base_url + 'users/',
         'teams': base_url + 'teams/',
@@ -47,5 +47,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', api_root),  # / points to api_root
     path('api/', api_root),  # api_root at /api/
-    path('api/', include(router.urls)),
+    path('api/', include((router.urls, 'octofit_tracker'), namespace='api')),
+    path('', include(router.urls)),
 ]
