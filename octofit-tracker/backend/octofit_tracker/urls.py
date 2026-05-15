@@ -32,9 +32,9 @@ router.register(r'leaderboard', views.LeaderboardViewSet)
 def api_root(request):
     codespace_name = os.environ.get('CODESPACE_NAME')
     if codespace_name:
-        base_url = f"https://{codespace_name}-8000.app.github.dev/"
+        base_url = f"https://{codespace_name}-8000.app.github.dev/api/"
     else:
-        base_url = request.build_absolute_uri('/')
+        base_url = request.build_absolute_uri()
     return Response({
         'users': base_url + 'users/',
         'teams': base_url + 'teams/',
